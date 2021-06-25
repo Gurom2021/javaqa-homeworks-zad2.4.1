@@ -13,7 +13,7 @@ public class StatsService {
         for (long sale:sales) {
             sumSales+=sale;
         }
-        return sumSales / 12;
+        return sumSales / sales.length;
     }
     public long maxSales(long[] sales) {
         int maxMonth = 0;
@@ -52,7 +52,7 @@ public class StatsService {
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
 
         for (long sale : sales) {
-            if (sumSales / 12 > sales[month]) {
+            if (sumSales / sales.length > sales[month]) {
                 numberMonth = numberMonth + 1;
             }
             month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
@@ -70,7 +70,7 @@ public class StatsService {
             int month = 0; // переменная для индекса рассматриваемого месяца в массиве
 
             for (long sale:sales) {
-                if (sumSales / 12 < sales[month]) {
+                if (sumSales / sales.length < sales[month]) {
                     numberMonth = numberMonth + 1 ;
                 }
                 month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
