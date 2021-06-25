@@ -3,18 +3,17 @@ package ru.netology.stats;
 public class StatsService {
     public long calculateSumSales(long[] sales) {
         long sumSales = 0;
-          for (long sale:sales) {
-              sumSales+=sale;
-          }
-          return sumSales;
-    }
-    public long calculateAverageSumSales(long[] sales) {
-        long sumSales = 0;
-        for (long sale:sales) {
-            sumSales+=sale;
+        for (long sale : sales) {
+            sumSales += sale;
         }
-        return sumSales / sales.length;
+        return sumSales;
     }
+
+    public long calculateAverageSumSales(long[] sales) {
+        StatsService service = new StatsService();
+        return service.calculateSumSales(sales) / sales.length;
+    }
+
     public long maxSales(long[] sales) {
         int maxMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
@@ -28,6 +27,7 @@ public class StatsService {
         }
         return maxMonth + 1;
     }
+
     public long minSales(long[] sales) {
         int minMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
@@ -41,18 +41,16 @@ public class StatsService {
         }
         return minMonth + 1;
     }
+
     public long numberMonthsSalesBelowAverage(long[] sales) {
 
-        long sumSales = 0;
-        for (long sale : sales) {
-            sumSales += sale;
-        }
+        StatsService service = new StatsService();
 
         int numberMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
 
         for (long sale : sales) {
-            if (sumSales / sales.length > sales[month]) {
+            if (service.calculateAverageSumSales(sales) > sales[month]) {
                 numberMonth = numberMonth + 1;
             }
             month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
@@ -60,24 +58,21 @@ public class StatsService {
         return numberMonth;
     }
 
-        public long numberMonthsSalesAboveAverage(long[] sales) {
+    public long numberMonthsSalesAboveAverage(long[] sales) {
 
-            long sumSales = 0;
-            for (long sale:sales) {
-                sumSales+=sale;
-            }
-            int numberMonth = 0;
-            int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        StatsService service = new StatsService();
 
-            for (long sale:sales) {
-                if (sumSales / sales.length < sales[month]) {
-                    numberMonth = numberMonth + 1 ;
-                }
-                month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
+        int numberMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+
+        for (long sale : sales) {
+            if (service.calculateAverageSumSales(sales) < sales[month]) {
+                numberMonth = numberMonth + 1;
             }
-            return numberMonth;
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
+        }
+        return numberMonth;
     }
-
 
 
 }
