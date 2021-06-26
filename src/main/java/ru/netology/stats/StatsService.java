@@ -46,11 +46,13 @@ public class StatsService {
 
         StatsService service = new StatsService();
 
+        long AverageSumSales = service.calculateSumSales(sales) / sales.length;
+
         int numberMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
 
         for (long sale : sales) {
-            if (service.calculateAverageSumSales(sales) > sales[month]) {
+            if (AverageSumSales > sales[month]) {
                 numberMonth = numberMonth + 1;
             }
             month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
@@ -61,12 +63,13 @@ public class StatsService {
     public long numberMonthsSalesAboveAverage(long[] sales) {
 
         StatsService service = new StatsService();
+        long AverageSumSales = service.calculateSumSales(sales) / sales.length;
 
         int numberMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
 
         for (long sale : sales) {
-            if (service.calculateAverageSumSales(sales) < sales[month]) {
+            if (AverageSumSales < sales[month]) {
                 numberMonth = numberMonth + 1;
             }
             month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
